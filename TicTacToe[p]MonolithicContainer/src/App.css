@@ -1,0 +1,366 @@
+/* CSS Variables for Theme Management */
+:root {
+  /* Light theme colors */
+  --bg-primary: #ffffff;
+  --bg-secondary: #f8f9fa;
+  --text-primary: #282c34;
+  --text-secondary: #1976d2;
+  --border-color: #e9ecef;
+  --button-bg: #1976d2;
+  --button-text: #ffffff;
+  --square-bg: #fff;
+  --square-border: #e0e0e0;
+  --square-highlight: #ffe0b2;
+  --square-active: #90caf9;
+  --color-X: #1976d2;
+  --color-O: #e87a41;
+  --color-X-blind: #1565c0;
+  --color-O-blind: #6d4c41;
+}
+
+[data-theme="dark"] {
+  /* Dark theme colors */
+  --bg-primary: #1a1a1a;
+  --bg-secondary: #282c34;
+  --text-primary: #ffffff;
+  --text-secondary: #61dafb;
+  --border-color: #404040;
+  --button-bg: #0056b3;
+  --button-text: #ffffff;
+  --square-bg: #262626;
+  --square-border: #353535;
+  --square-highlight: #273c75;
+  --square-active: #1565c0;
+  --color-X: #61dafb;
+  --color-O: #e87a41;
+  --color-X-blind: #1976d2;
+  --color-O-blind: #8d6e63;
+}
+
+/* Color-blind mode overrides (JS applies color mode to pieces directly) */
+
+
+[data-theme="dark"] {
+  /* Dark theme colors */
+  --bg-primary: #1a1a1a;
+  --bg-secondary: #282c34;
+  --text-primary: #ffffff;
+  --text-secondary: #61dafb;
+  --border-color: #404040;
+  --button-bg: #0056b3;
+  --button-text: #ffffff;
+}
+
+.App {
+  text-align: center;
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  min-height: 100vh;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.App-header {
+  background-color: var(--bg-secondary);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: var(--text-primary);
+  transition: background-color 0.3s ease;
+  position: relative;
+}
+
+.App-link {
+  color: var(--text-secondary);
+  transition: color 0.3s ease;
+}
+
+.theme-toggle {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  background-color: var(--button-bg);
+  color: var(--button-text);
+  border: none;
+  border-radius: 8px;
+  padding: 10px 20px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.theme-toggle:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+  opacity: 0.9;
+}
+
+.theme-toggle:active {
+  transform: translateY(0);
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Tic Tac Toe UI Styles */
+.ttt-root {
+  font-family: "Segoe UI", "Arial", sans-serif;
+  min-height: 100vh;
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  transition: background 0.3s, color 0.3s;
+}
+.ttt-header {
+  margin-bottom: 1.5rem;
+  padding: 2rem 0 1rem 0;
+  position: relative;
+}
+.ttt-title {
+  font-size: 2.4rem;
+  margin: 0.5rem 0 0.5rem 0;
+  letter-spacing: 2px;
+  font-weight: 700;
+}
+.ttt-status {
+  font-size: 1.1rem;
+  margin: 0.6rem 0 0.6rem 0;
+}
+.ttt-main {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 2.7rem;
+  flex-wrap: wrap;
+  margin-bottom: 1.5rem;
+  min-height: 350px;
+  width: 100%;
+}
+
+.ttt-board {
+  display: inline-block;
+  outline: none;
+  margin: 0 auto;
+  background: var(--bg-secondary);
+  border-radius: 15px;
+  box-shadow: 0 2px 16px 0 rgba(0,0,0,0.06);
+  padding: 1.4rem 1.2rem;
+}
+.ttt-row {
+  display: flex;
+}
+.ttt-square {
+  width: 70px;
+  height: 70px;
+  background: var(--square-bg);
+  border: 2px solid var(--square-border);
+  border-radius: 8px;
+  font-size: 2.6rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s, box-shadow 0.2s;
+  margin: 0.18rem;
+  outline: none;
+  position: relative;
+  user-select: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.ttt-square.highlight {
+  background: var(--square-highlight);
+  border-color: #ffd54f;
+  box-shadow: 0 0 6px #ffd54f;
+}
+.ttt-square.active-focus {
+  z-index: 2;
+  outline: 2.5px solid var(--square-active);
+  background: #e3f2fd;
+}
+.ttt-square:disabled {
+  background: #eee !important;
+  color: #bbb !important;
+  cursor: not-allowed;
+}
+
+.ttt-controls {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.6rem;
+  margin-top: 1.25rem;
+}
+.ttt-reset-btn, .ttt-reset-stats-btn, .ttt-color-blind-toggle, .ttt-acc-doc-btn {
+  background: var(--button-bg);
+  color: var(--button-text);
+  border: none;
+  border-radius: 7px;
+  padding: 0.6rem 1.1rem;
+  font-size: 1rem;
+  font-weight: 500;
+  margin-top: 0.3rem;
+  margin-right: .3rem;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s, box-shadow 0.2s;
+  box-shadow: 0 1.5px 5px rgba(80,70,60,0.02);
+}
+.ttt-reset-btn:hover, .ttt-reset-stats-btn:hover, .ttt-color-blind-toggle:hover, .ttt-acc-doc-btn:hover {
+  filter: brightness(1.08);
+  box-shadow: 0 4px 10px #2196f326;
+}
+.ttt-mode-selector {
+  margin-top: 1.2rem;
+  margin-bottom: .6rem;
+  font-size: 1.1rem;
+}
+.ttt-label {
+  font-weight: 600;
+}
+.ttt-player-info {
+  font-size: 1rem;
+  padding-left: .6rem;
+}
+
+.ttt-stats-panel {
+  margin-top: 1.2rem;
+  background: var(--bg-secondary);
+  border-radius: 12px;
+  box-shadow: 0 3px 10px #2222;
+  padding: 1.2rem 1.2rem 1.3rem 1.2rem;
+  font-size: 1.12rem;
+  min-width: 220px;
+}
+.ttt-stats-panel h3 {
+  font-size: 1.2rem;
+  margin-bottom: 1rem;
+  margin-top: .6rem;
+}
+.ttt-stats-panel ul, .ttt-stats-panel details {
+  font-size: 1rem;
+}
+.ttt-stats-panel details summary {
+  cursor: pointer;
+  font-weight: 600;
+  outline: none;
+}
+
+.ttt-footer {
+  padding: 1.2rem 0 .7rem 0;
+  font-size: .97rem;
+  color: var(--text-secondary);
+  text-align: center;
+}
+.ttt-accessibility-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: #111c 45%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 500;
+}
+.ttt-accessibility-content {
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  min-width: 290px;
+  max-width: 93vw;
+  border-radius: 12px;
+  box-shadow: 0 6px 35px #0007;
+  padding: 2.2rem 1.7rem 1.4rem 1.7rem;
+  position: relative;
+}
+.ttt-accessibility-content h2 {
+  font-size: 1.4rem;
+  margin-top: 0;
+}
+.ttt-accessibility-content ul {
+  font-size: 1.03rem;
+}
+.ttt-doc-close {
+  position: absolute;
+  top: .9rem;
+  right: 1rem;
+  background: var(--button-bg);
+  color: var(--button-text);
+  border: none;
+  border-radius: 7px;
+  font-size: .97rem;
+  padding: 0.3rem 0.8rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+.ttt-color-blind-toggle {
+  position: absolute;
+  top: 60px;
+  right: 20px;
+  background: #fbc02d;
+  color: #222;
+  font-weight:600;
+  z-index: 5;
+}
+.ttt-acc-doc-btn {
+  position: absolute;
+  top: 100px;
+  right: 20px;
+}
+.ttt-color-blind-toggle:active, .ttt-acc-doc-btn:active { 
+  filter: brightness(0.98);
+}
+.ttt-main, .App-header {
+  transition: background-color 0.3s ease;
+}
+
+/* Responsive design for mobile */
+@media (max-width: 768px) {
+  .ttt-main {
+    flex-direction: column;
+    align-items: center;
+    gap: 1.2rem;
+    padding-left: 0.2rem;
+    padding-right: 0.2rem;
+  }
+  .theme-toggle {
+    top: 8px;
+    right: 8px;
+    padding: 7px 13px;
+    font-size: 12px;
+  }
+  .ttt-color-blind-toggle {
+    top: 41px;
+    right: 8px;
+    font-size: 12px;
+    padding: 7px 13px;
+  }
+  .ttt-acc-doc-btn {
+    top: 70px;
+    right: 8px;
+    font-size: 13px;
+    padding: 7px 8px;
+  }
+  .ttt-board {
+    margin-bottom: 1.2rem;
+  }
+}
