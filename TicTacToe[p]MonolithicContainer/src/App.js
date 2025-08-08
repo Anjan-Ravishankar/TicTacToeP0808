@@ -630,8 +630,18 @@ function App() {
   }, [accDocOpen]);
 
   // --- COMPONENT RENDER ---
+  // DEBUG: Try to always show a root banner to prove React renders at all
+  // Remove once confirmed visible!
   return (
     <div className="App ttt-root">
+      <div style={{
+        background: "yellow",
+        color: "black",
+        position: "fixed",
+        top: 0, left: 0, width: "100%", zIndex: 9999, fontSize: 18, fontWeight: "bold", textAlign: "center"
+      }}>
+        DEBUG: React App is Rendering. If you see this, React/root mounting is working!
+      </div>
       <header className="ttt-header App-header" tabIndex={-1}>
         <ThemeToggle theme={theme} onToggle={() => setTheme(t => (t === "light" ? "dark" : "light"))} />
         <ColorBlindToggle colorMode={colorMode} setColorMode={setColorMode} />
